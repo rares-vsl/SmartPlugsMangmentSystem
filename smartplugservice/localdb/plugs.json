@@ -1,0 +1,107 @@
+[
+  {
+    "id": "refrigerator",
+    "name": "Refrigerator",
+    "utility_type": "ELECTRICITY",
+    "status": "ON",
+    "real_time_consumption": 0.4
+  },
+  {
+    "id": "electric-oven",
+    "name": "Electric Oven",
+    "utility_type": "ELECTRICITY",
+    "status": "ON",
+    "real_time_consumption": 1.5
+  },
+  {
+    "id": "washing-machine-electric",
+    "name": "Washing Machine (Electric)",
+    "utility_type": "ELECTRICITY",
+    "status": "ON",
+    "real_time_consumption": 1.0
+  },
+  {
+    "id": "electric-water-heater",
+    "name": "Electric Water Heater",
+    "utility_type": "ELECTRICITY",
+    "status": "ON",
+    "real_time_consumption": 1.6
+  },
+  {
+    "id": "air-conditioner",
+    "name": "Air Conditioner",
+    "utility_type": "ELECTRICITY",
+    "status": "ON",
+    "real_time_consumption": 1.2
+  },
+  {
+    "id": "gas-boiler",
+    "name": "Gas Boiler",
+    "utility_type": "GAS",
+    "status": "ON",
+    "real_time_consumption": 0.6
+  },
+  {
+    "id": "gas-stove",
+    "name": "Gas Stove",
+    "utility_type": "GAS",
+    "status": "OFF",
+    "real_time_consumption": 0.35
+  },
+  {
+    "id": "gas-water-heater",
+    "name": "Gas Water Heater",
+    "utility_type": "GAS",
+    "status": "ON",
+    "real_time_consumption": 1.2
+  },
+  {
+    "id": "gas-fireplace",
+    "name": "Gas Fireplace",
+    "utility_type": "GAS",
+    "status": "ON",
+    "real_time_consumption": 0.8
+  },
+  {
+    "id": "gas-dryer",
+    "name": "Gas Dryer",
+    "utility_type": "GAS",
+    "status": "ON",
+    "real_time_consumption": 1.5
+  },
+  {
+    "id": "shower",
+    "name": "Shower",
+    "utility_type": "WATER",
+    "status": "OFF",
+    "real_time_consumption": 0.5
+  },
+  {
+    "id": "kitchen-faucet",
+    "name": "Kitchen Faucet",
+    "utility_type": "WATER",
+    "status": "OFF",
+    "real_time_consumption": 1.7
+  },
+  {
+    "id": "dishwasher",
+    "name": "Dishwasher",
+    "utility_type": "WATER",
+    "status": "ON",
+    "real_time_consumption": 2.4
+  },
+  {
+    "id": "washing-machine-water",
+    "name": "Washing Machine (Water)",
+    "utility_type": "WATER",
+    "status": "ON",
+    "real_time_consumption": 0.5
+  },
+  {
+    "id": "garden-sprinkle",
+    "name": "Garden Sprinkler",
+    "utility_type": "WATER",
+    "status": "OFF",
+    "real_time_consumption": 1.5
+  }
+]
