@@ -13,3 +13,12 @@ class SmartPlugsService(ABC):
     @abstractmethod
     def switch_plug(self, plug_id: str) -> tuple[bool, str]:
         pass
+    @abstractmethod
+    def add_plug(self, plug: SmartPlug) -> tuple[bool, str]:
+        pass
+    @abstractmethod
+    def update_plug(self, plug_id: str, plug: SmartPlug) -> tuple[bool, str]:
+        pass
+    @abstractmethod
+    def delete_plug(self, plug_id: str) -> tuple[bool, str]:
+        pass

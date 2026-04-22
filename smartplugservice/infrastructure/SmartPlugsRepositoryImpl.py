@@ -101,3 +101,39 @@ class SmartPlugsRepositoryImpl(SmartPlugsRepository):
             self._save_plugs(plugs)
 
             return True, f"Plug '{plug_id}' status switched successfully"
+
+    def add_plug(self, plug: SmartPlug) -> tuple[bool, str]:
+        with self._lock:
+            plugs = self._load_smart_plugs()
+
+            if plug.id in plugs:
+                return False, f"Plug '{plug.id}' already exists"
+
+            plugs[plug.id] = plug
+            self._save_plugs(plugs)
+            logger.debug("Added plug '%s'", plug.id)
+            return True, f"Plug '{plug.id}' added successfully"
+
+    def update_plug(self, plug_id: str, plug: SmartPlug) -> tuple[bool, str]:
+        with self._lock:
+            plugs = self._load_smart_plugs()
+
+            if plug_id not in plugs:
+                return False, f"Plug '{plug_id}' not found"
+
+            plugs[plug_id] = plug
+            self._save_plugs(plugs)
+            logger.debug("Updated plug '%s'", plug_id)
+            return True, f"Plug '{plug_id}' updated successfully"
+
+    def delete_plug(self, plug_id: str) -> tuple[bool, str]:
+        with self._lock:
+            plugs = self._load_smart_plugs()
+
+            if plug_id not in plugs:
+                return False, f"Plug '{plug_id}' not found"
+
+            del plugs[plug_id]
+            self._save_plugs(plugs)
+            logger.debug("Deleted plug '%s'", plug_id)
+            return True, f"Plug '{plug_id}' deleted successfully"

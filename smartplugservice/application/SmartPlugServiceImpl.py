@@ -17,3 +17,12 @@ class SmartPlugsServiceImpl(SmartPlugsService):
 
     def switch_plug(self, plug_id: str) -> tuple[bool, str]:
         return self.repository.switch_plug(plug_id)
+
+    def add_plug(self, plug: SmartPlug) -> tuple[bool, str]:
+        return self.repository.add_plug(plug)
+
+    def update_plug(self, plug_id: str, plug: SmartPlug) -> tuple[bool, str]:
+        return self.repository.update_plug(plug_id, plug)
+
+    def delete_plug(self, plug_id: str) -> tuple[bool, str]:
+        return self.repository.delete_plug(plug_id)
