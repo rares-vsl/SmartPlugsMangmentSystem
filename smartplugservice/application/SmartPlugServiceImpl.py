@@ -10,19 +10,19 @@ class SmartPlugsServiceImpl(SmartPlugsService):
         self.repository = repository
 
     def get_all_plugs(self) -> List[SmartPlug]:
-        return self.repository.get_all_plugs()
+        return self.repository.find_all_plugs()
 
     def get_plug_by_id(self, plug_id: str) -> SmartPlug:
-        return self.repository.get_plug_by_id(plug_id)
+        return self.repository.find_plug_by_id(plug_id)
 
     def switch_plug(self, plug_id: str) -> tuple[bool, str]:
         return self.repository.switch_plug(plug_id)
 
     def add_plug(self, plug: SmartPlug) -> tuple[bool, str]:
-        return self.repository.add_plug(plug)
+        return self.repository.save_plug(plug)
 
     def update_plug(self, plug_id: str, plug: SmartPlug) -> tuple[bool, str]:
         return self.repository.update_plug(plug_id, plug)
 
     def delete_plug(self, plug_id: str) -> tuple[bool, str]:
-        return self.repository.delete_plug(plug_id)
+        return self.repository.remove_plug(plug_id)

@@ -74,12 +74,12 @@ class SmartPlugsRepositoryImpl(SmartPlugsRepository):
         except Exception as e:
             logger.error("Error saving plugs: %s", e)
 
-    def get_all_plugs(self) -> List[SmartPlug]:
+    def find_all_plugs(self) -> List[SmartPlug]:
         with self._lock:
             plugs = self._load_smart_plugs()
             return list(plugs.values())
 
-    def get_plug_by_id(self, plug_id: str) -> SmartPlug:
+    def find_plug_by_id(self, plug_id: str) -> SmartPlug:
         with self._lock:
             plugs = self._load_smart_plugs()
             return plugs.get(plug_id)
@@ -102,7 +102,7 @@ class SmartPlugsRepositoryImpl(SmartPlugsRepository):
 
             return True, f"Plug '{plug_id}' status switched successfully"
 
-    def add_plug(self, plug: SmartPlug) -> tuple[bool, str]:
+    def save_plug(self, plug: SmartPlug) -> tuple[bool, str]:
         with self._lock:
             plugs = self._load_smart_plugs()
 
@@ -126,7 +126,7 @@ class SmartPlugsRepositoryImpl(SmartPlugsRepository):
             logger.debug("Updated plug '%s'", plug_id)
             return True, f"Plug '{plug_id}' updated successfully"
 
-    def delete_plug(self, plug_id: str) -> tuple[bool, str]:
+    def remove_plug(self, plug_id: str) -> tuple[bool, str]:
         with self._lock:
             plugs = self._load_smart_plugs()
 
