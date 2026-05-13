@@ -22,3 +22,6 @@ class SmartPlugsService(ABC):
     @abstractmethod
     def delete_plug(self, plug_id: str) -> tuple[bool, str]:
         pass
+    @abstractmethod
+    def get_statistics(self):
+        pass

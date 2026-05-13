@@ -46,7 +46,6 @@ class SmartPlugsRestAPI:
         self._setup_routes()
 
     def _setup_routes(self):
-
         @self.app.get("/", summary="Root endpoint")
         async def root():
             return {
@@ -57,6 +56,10 @@ class SmartPlugsRestAPI:
                     "specific_plug": "/api/smart-plugs/{plug_id}"
                 }
             }
+
+        @self.app.get("/api/smart-plugs/stats", summary="Get aggregated statistics")
+        async def get_plug_stats():
+            return self.service.get_statistics()
 
         @self.app.get("/api/smart-plugs", response_model=List[SmartPlug], summary="Get all Smart Plugs")
         async def get_all_smart_plugs():
@@ -123,3 +126,5 @@ class SmartPlugsRestAPI:
             success, message = self.service.delete_plug(plug_id)
             if not success:
                 raise HTTPException(status_code=500, detail=message)
+
+            return {"message": message}

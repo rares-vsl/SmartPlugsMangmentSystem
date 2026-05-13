@@ -26,3 +26,35 @@ class SmartPlugsServiceImpl(SmartPlugsService):
 
     def delete_plug(self, plug_id: str) -> tuple[bool, str]:
         return self.repository.remove_plug(plug_id)
+
+    def get_statistics(self):
+        plugs = self.repository.find_all_plugs()
+
+        stats = {
+            "plugs_by_status": {
+                "ON": [],
+                "OFF": []
+            },
+            "plugs_by_utility": {},
+            "consumption": {
+                "total": 0.0
+            }
+        }
+
+        for plug in plugs:
+            # Group by Status
+            status_key = plug.status.value.upper()
+            stats["plugs_by_status"][status_key].append(plug)
+
+            utility_key = plug.utility_type.value
+            if utility_key not in stats["plugs_by_utility"]:
+                stats["plugs_by_utility"][utility_key] = []
+            stats["plugs_by_utility"][utility_key].append(plug)
+
+            if status_key == "ON":
+                stats["consumption"]["total"] += plug.real_time_consumption
+                stats["consumption"][utility_key] = (
+                        stats["consumption"].get(utility_key, 0.0) + plug.real_time_consumption
+                )
+
+        return stats
