@@ -27,31 +27,6 @@ async def get_all_plugs() -> dict:
         response.raise_for_status()
         return {"plugs": response.json()}
 
-
-# ── GET one ───────────────────────────────────────────────────────────────────
-
-# @mcp.tool()
-# async def get_plug(plug_id: str) -> dict:
-#     """
-#     Return a smart plug by id.
-#
-#     Args:
-#     - plug_id: unique identifier
-#
-#     Output:
-#     - SmartPlug object
-#
-#     Error:
-#     - 404 if not found
-#     """
-#     async with _client() as client:
-#         response = await client.get(f"{BASE_URL}/{plug_id}")
-#         if response.status_code == 404:
-#             return {"error": f"Plug '{plug_id}' not found"}
-#         response.raise_for_status()
-#         return response.json()
-
-
 # ── POST (create) ─────────────────────────────────────────────────────────────
 
 @mcp.tool()
