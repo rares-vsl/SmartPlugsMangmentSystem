@@ -1,0 +1,5 @@
+{
+  "utility_plugs_info": "Tell me information about the {utility} plugs in my house",
+  "utility_plugs_monitoring": "Tell me how much {utility} plugs are consuming right now",
+  "utility_plugs_status": "Tell me how which plug is {status}"
+}
