@@ -147,6 +147,8 @@ async def switch_plug(plug_id: str) -> dict:
 @mcp.tool()
 async def delete_plug(plug_id: str) -> dict:
     """
+    CRITICAL: Requires user confirmation.
+
     Delete a smart plug.
 
     Args:

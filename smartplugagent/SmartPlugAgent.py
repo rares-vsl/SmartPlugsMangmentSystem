@@ -9,7 +9,7 @@ from smartplugagent.prompt.PromptBuilder import PromptBuilder
 
 import asyncio
 
-SERVER_PATH = r"\SmartPlugsMangmentSystem\smartplugsmcp\smartplug_mcp_server.py"
+SERVER_PATH = r"C:\Users\rvvas\IdeaProjects\SmartPlugsMangmentSystem\smartplugsmcp\smartplug_mcp_server.py"
 
 class SmartPlugAgent:
     def __init__(self, debug_flag = True):

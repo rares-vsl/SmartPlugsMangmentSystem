@@ -3,7 +3,7 @@
     "id": "refrigerator",
     "name": "Refrigerator",
     "utility_type": "ELECTRICITY",
-    "status": "ON",
+    "status": "OFF",
     "real_time_consumption": 0.4
   },
   {
@@ -74,7 +74,7 @@
     "name": "Shower",
     "utility_type": "WATER",
     "status": "OFF",
-    "real_time_consumption": 0.5
+    "real_time_consumption": 3.0
   },
   {
     "id": "kitchen-faucet",
@@ -87,7 +87,7 @@
     "id": "dishwasher",
     "name": "Dishwasher",
     "utility_type": "WATER",
-    "status": "ON",
+    "status": "OFF",
     "real_time_consumption": 2.4
   },
   {
@@ -101,7 +101,14 @@
     "id": "garden-sprinkle",
     "name": "Garden Sprinkler",
     "utility_type": "WATER",
-    "status": "OFF",
+    "status": "ON",
     "real_time_consumption": 1.5
+  },
+  {
+    "id": "living-room-lamp",
+    "name": "Living-Room Lamp",
+    "utility_type": "ELECTRICITY",
+    "status": "OFF",
+    "real_time_consumption": 2.4
   }
 ]

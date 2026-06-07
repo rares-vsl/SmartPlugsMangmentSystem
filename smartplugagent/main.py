@@ -6,7 +6,7 @@ def parse_response(response):
     return re.sub(r"^Action\[[^]]+]:\s*", "", response)
 
 async def main():
-    agent = SmartPlugAgent(debug_flag=False)
+    agent = SmartPlugAgent(debug_flag=True)
 
     await agent.start()
 

@@ -1,13 +1,17 @@
-import logging
+import json
+from contextlib import AsyncExitStack
+from typing import Optional
 
 import ollama
-from typing import Optional
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-from contextlib import AsyncExitStack
-import json
 
-OLLAMA_MODEL = "gpt-oss:120b-cloud"
+OLLAMA_MODEL = "gpt-oss:20b-cloud"
+import logging
+
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("mcp").setLevel(logging.WARNING)
+
 
 def mcp_tool_to_ollama(tool) -> dict:
     return {
@@ -18,6 +22,8 @@ def mcp_tool_to_ollama(tool) -> dict:
             "parameters": tool.inputSchema,
         },
     }
+
+
 class OllamaClient:
     def __init__(self):
         self.write = None
@@ -29,10 +35,6 @@ class OllamaClient:
 
     async def call_tool(self, tool_name: str, tool_args: dict) -> str:
         print(f"[Tool] {tool_name}({json.dumps(tool_args)})")
-        logging.getLogger("httpx").setLevel(logging.WARNING)
-
-        logging.getLogger("mcp").setLevel(logging.WARNING)
-        logging.getLogger("uvicorn").setLevel(logging.WARNING)
         try:
             result = await self.session.call_tool(tool_name, tool_args)
 
@@ -59,12 +61,12 @@ class OllamaClient:
 
         # List available tools
         response = await self.session.list_tools()
-        self.tools =  [mcp_tool_to_ollama(t) for t in response.tools]
+        self.tools = [mcp_tool_to_ollama(t) for t in response.tools]
         tools = response.tools
         print("\nConnected to server with tools:", [tool.name for tool in tools])
 
-    def prompt(self, messages, full_response = False, stats_required = True):
-        for i in range (0, 2):
+    def prompt(self, messages, full_response=False, stats_required=True):
+        for i in range(0, 2):
             try:
                 response = ollama.chat(
                     model=self.model,
@@ -73,14 +75,14 @@ class OllamaClient:
                     stream=False,
                     think=False,
                     options={
-                        "stop": ["\nObservation"]
+                        "stop": ["\nObservation"],
+                        'temperature': 1
                     }
                 )
                 break
             except Exception as last_exception:
                 if i == 1:
                     raise last_exception
-
 
         stats = {
             "input_tokens": response.get("prompt_eval_count", 0),
@@ -89,7 +91,7 @@ class OllamaClient:
         }
 
         if stats_required:
-           return response if full_response else response["message"], stats
+            return response if full_response else response["message"], stats
         return response if full_response else response["message"]
 
     async def cleanup(self):
